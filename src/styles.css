@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-divider {
+  border-top-color: #9e800c;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-row:hover{
+  background: #0169392a;
+  cursor: pointer;
+}
+
+.mat-form-field.fullWidth {
+  width: 100%;
+}
+
+.mat-raised-button, .mat-fab {
+  color: white;
+}
+
+.green-snackbar {
+    background: green;
+    color: white;
+}
+
+.red-snackbar {
+    background: red;
+    color: white;
+}

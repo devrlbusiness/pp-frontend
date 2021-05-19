@@ -1,0 +1,75 @@
+<h1 mat-dialog-title>
+  <mat-icon color="primary">person_add_alt_1</mat-icon>
+  Registrar Nuevo Cliente
+</h1>
+<form [formGroup]="nuevoClienteFormGroup" (ngSubmit)="onSubmitForm(nuevoClienteFormGroup.value)">
+  <mat-dialog-content align="center">
+    <!-- nombre -->
+    <mat-form-field class="fullWidth" hintLabel="Mín 3 y Máx 50 caracteres" appearance="standard">
+      <mat-label>Nombre y Apellidos</mat-label>
+      <input matInput type="text" maxlength="50" formControlName="nombre" placeholder="Escribir aquí" required>
+      <mat-hint align="end">{{nombre.value?.length || 0}}/50</mat-hint>
+      <mat-error *ngIf="nombre.invalid 
+                            && 
+                            (nombre.dirty || nombre.touched)">
+        <div *ngIf="nombre.errors.required">
+          El nombre del cliente es requerido!
+        </div>
+        <div *ngIf="nombre.errors.minlength">
+          El nombre del cliente debe tener mínimo 3 caracteres!
+        </div>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <!-- empresa -->
+    <mat-form-field class="fullWidth" hintLabel="Mín 3 y Máx 50 caracteres" appearance="standard">
+      <mat-label>Empresa</mat-label>
+      <input matInput type="text" maxlength="50" formControlName="empresa" placeholder="Escribir aquí">
+      <mat-hint align="end">{{empresa.value?.length || 0}}/50</mat-hint>
+      <mat-error *ngIf="empresa.invalid 
+                            && 
+                            (empresa.dirty || empresa.touched)">
+        <div *ngIf="empresa.errors.minlength">
+          La empresa del cliente debe tener mínimo 3 caracteres!
+        </div>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <!-- telefono -->
+    <mat-form-field hintLabel="Incluir código de área" appearance="standard">
+      <mat-label>Teléfono</mat-label>
+      <ngx-mat-intl-tel-input [onlyCountries]="['mx', 'us']" [enablePlaceholder]="true" placeholder="Escribir aquí" name="phone" formControlName="telefono" #telefono required>
+      </ngx-mat-intl-tel-input>
+      <mat-icon matSuffix>contact_phone</mat-icon>
+      <mat-hint align="end">{{telefono.value?.length || 0}}/13</mat-hint>
+    </mat-form-field>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <!-- correo -->
+    <mat-form-field hintLabel="Mín 3 y Máx 50 caracteres" appearance="standard">
+      <mat-label>Correo</mat-label>
+      <input matInput type="text" maxlength="50" formControlName="correo" placeholder="Escribir aquí" required>
+      <mat-hint align="end">{{correo.value?.length || 0}}/50</mat-hint>
+      <mat-error *ngIf="correo.invalid 
+                        && 
+                        (correo.dirty || correo.touched)">
+        <div *ngIf="correo.errors.required">
+          El correo es requerido!
+        </div>
+        <div *ngIf="correo.errors.email">
+          El correo es inválido!
+        </div>
+      </mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center">
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+    <br>
+    <button type="button" mat-raised-button color="warn" (click)="onClickCancelar()">Cancelar</button>
+    &nbsp; &nbsp;
+    <button type="submit" mat-raised-button [disabled]="!this.nuevoClienteFormGroup.valid || isLoading"
+      color="primary">
+      Guardar
+      <mat-icon>save</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</form>

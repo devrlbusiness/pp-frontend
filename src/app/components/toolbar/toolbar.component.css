@@ -1,0 +1,55 @@
+img {
+  width: 190px;
+}
+
+.mat-icon {
+  cursor: pointer;
+}
+
+.mat-sidenav-container {
+  position: absolute;
+  top: 60px;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+}
+
+.mat-sidenav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  background: #01092c;
+}
+
+.mat-list-base .mat-list-item, a{
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 90%;
+} 
+
+.mat-expansion-panel {
+  background:  #01092c;
+  color: white;
+}
+
+.mat-expansion-panel-header {
+  padding-left: 16px; 
+}
+
+::ng-deep .mat-expansion-indicator::after, .mat-expansion-panel-header-description { 
+  color: white;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.mat-button {
+  color: white;
+}
+
+.mat-drawer-container {
+  background-color: white;
+}

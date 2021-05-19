@@ -1,0 +1,53 @@
+.row {
+  margin: 0;
+  height: 100%;
+}
+
+.display-center {
+  display: flex;
+  justify-content: center;
+}
+
+.margin-15 {
+  margin-top: 15%; 
+}
+
+.background-color-primary {
+  background: #01092c;
+}
+
+img {
+  margin-top: 15%;
+  height: 70%;
+  width: 70%;
+}
+
+mat-card {
+  position: absolute;
+}
+
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-form-field{
+  width: 100%;
+  min-width: 300px;
+}
+
+button{
+  width: 100%;
+}
+
+.mat-raised-button {
+  color: white;
+}
+
+a {
+  color: red;
+}
+
+
+

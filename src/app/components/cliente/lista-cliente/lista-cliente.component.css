@@ -1,0 +1,16 @@
+.mat-form-field {
+  font-size: 14px;
+  width: 30%;
+}
+
+::ng-deep .tooltip-new {
+  background: #01092c;
+}
+
+::ng-deep .tooltip-edit {
+  background: #9e800c;
+}
+
+::ng-deep .tooltip-delete {
+  background: #f44336;
+}

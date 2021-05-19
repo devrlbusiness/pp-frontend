@@ -1,0 +1,91 @@
+<div align="center">
+  <br>
+  <h1>Lista de Asuntos</h1>
+</div>
+<!-- Buscar -->
+<div align="right">
+  <mat-form-field>
+    <mat-label>Buscar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ej. abc" #input>
+  </mat-form-field>
+</div>
+<mat-progress-bar *ngIf="!isAsuntos" mode="indeterminate"></mat-progress-bar>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- expediente Column -->
+    <ng-container matColumnDef="expediente">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Expediente </th>
+      <td mat-cell *matCellDef="let row"> {{row.expediente}} </td>
+    </ng-container>
+
+    <!-- organo Column -->
+    <ng-container matColumnDef="organo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Juzgado y/o Tribunal </th>
+      <td mat-cell *matCellDef="let row"> {{row.organo}} </td>
+    </ng-container>
+
+    <!-- tipo_asunto Column -->
+    <ng-container matColumnDef="tipo_asunto">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de Asunto </th>
+      <td mat-cell *matCellDef="let row"> {{row.tipo_asunto}} </td>
+    </ng-container>
+
+    <!-- tipo_servicio_asunto Column -->
+    <ng-container matColumnDef="tipo_servicio_asunto">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de Servicio y Asunto </th>
+      <td mat-cell *matCellDef="let row"> {{row.tipo_servicio_asunto}} </td>
+    </ng-container>
+
+    <!-- fecha_inicio Column -->
+    <ng-container matColumnDef="fecha_inicio">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de Inicio </th>
+      <td mat-cell *matCellDef="let row"> {{row.fecha_inicio | date:'shortDate'}} </td>
+    </ng-container>
+
+    <!-- estado_procesal Column -->
+    <ng-container matColumnDef="estado_procesal">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado Procesal </th>
+      <td mat-cell *matCellDef="let row"> {{row.estado_procesal}} </td>
+    </ng-container>
+
+    <!-- tramite_siguiente Column -->
+    <ng-container matColumnDef="tramite_siguiente">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Trámite Siguiente </th>
+      <td mat-cell *matCellDef="let row"> {{row.tramite_siguiente}} </td>
+    </ng-container>
+
+    <!-- observaciones Column -->
+    <ng-container matColumnDef="observaciones">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Observaciones </th>
+      <td mat-cell *matCellDef="let row"> {{row.observaciones}} </td>
+    </ng-container>
+
+    <!-- cliente_nombre Column -->
+    <ng-container matColumnDef="cliente_nombre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cliente </th>
+      <td mat-cell *matCellDef="let row"> {{row.cliente_nombre}} </td>
+    </ng-container>
+
+     <!-- acciones Column -->
+     <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef> 
+        <button mat-icon-button matTooltip="Registrar un nuevo asunto" matTooltipClass="tooltip-new"
+          matTooltipPosition="above" (click)="openNewAsunto()">
+          <mat-icon color="primary">note_add</mat-icon>
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button matTooltip="Editar datos del asunto" matTooltipClass="tooltip-edit" matTooltipPosition="above" (click)="openEditAsunto(row)">
+          <mat-icon color="accent">edit</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Eliminar asunto" matTooltipClass="tooltip-delete" matTooltipPosition="above" (click)="openDeleteAsunto(row)">
+          <mat-icon color="warn">delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+</div>

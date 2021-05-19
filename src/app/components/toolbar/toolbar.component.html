@@ -1,0 +1,54 @@
+<ng-container>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span color="primary" (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </span>
+      &nbsp;
+      <a routerLink="/inicio">
+        <img src="./../../../assets/img/logo-horizontal.png">
+      </a>
+      <span class="fill-remaining-space"></span>
+      &nbsp;&nbsp;
+      <mat-label *ngIf="usuario">{{usuario.nombre}} {{usuario.primer_apellido}}</mat-label>
+      <button mat-button (click)="onLogout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container [hasBackdrop]="false">
+    <mat-sidenav #sidenav mode="over" [fixedInViewport]="false" [fixedTopGap]="0" [fixedBottomGap]="0">
+      <mat-divider></mat-divider>
+      <div *ngIf="usuario.rol === 'Administrador'">
+        <mat-expansion-panel [class.mat-elevation-z0]="true">
+          <mat-expansion-panel-header>
+            <a mat-list-item>
+              <mat-icon>admin_panel_settings</mat-icon>&nbsp;Administrar
+            </a>
+          </mat-expansion-panel-header>
+          <mat-nav-list>
+            <a mat-list-item routerLink="administrar/usuario" (click)="sidenav.toggle()">
+              <mat-icon>manage_accounts</mat-icon>&nbsp;Usuarios
+            </a>
+          </mat-nav-list>
+        </mat-expansion-panel>
+        <mat-divider></mat-divider>
+      </div>
+      <mat-nav-list>
+        <a mat-list-item routerLink="asunto" (click)="sidenav.toggle()">
+          <mat-icon>business_center</mat-icon>&nbsp;Asuntos
+        </a>
+      </mat-nav-list>
+      <mat-divider></mat-divider>
+      <mat-nav-list>
+        <a mat-list-item routerLink="cliente" (click)="sidenav.toggle()">
+          <mat-icon>hail</mat-icon>&nbsp;Clientes
+        </a>
+      </mat-nav-list>
+      <mat-divider color="accent"></mat-divider>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-container>

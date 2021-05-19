@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>
+  <mat-icon color="primary">person_remove</mat-icon>
+  ¿Estás seguro de eliminar este cliente {{data.nombre}}?
+</h1>
+<mat-dialog-content>
+  <br>
+  <mat-icon color="warn">warning_amber</mat-icon>
+  La eliminación de este cliente no se puede deshacer.
+  <br>
+  <br>
+  Para confirmar la eliminación, escriba <b><em>eliminar de forma permanente</em></b> en el campo de entrada de texto.
+  <br>
+  <mat-form-field class="fullWidth" appearance="outline">
+    <input #input matInput type="text" placeholder="eliminar de forma permanente">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <br>
+  <button type="button" mat-raised-button color="warn" (click)="onClickCancelar()">Cancelar</button>
+  &nbsp; &nbsp;
+  <button type="button" mat-raised-button [disabled]="(input.value !== 'eliminar de forma permanente') || isLoading" color="primary" (click)="onSubmit()">
+    Eliminar
+    <mat-icon>delete</mat-icon>
+  </button>
+</mat-dialog-actions>

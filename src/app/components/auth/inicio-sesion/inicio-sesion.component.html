@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-md-6 display-center background-color-primary">
+    <img src="./../../../assets/img/logo-vertical.png">
+  </div>
+  <div class="col-md-6 display-center margin-15">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Inicio de Sesión</mat-card-title>
+        <mat-card-subtitle>Por favor introduzca su correo y contraseña</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="formLogin" (ngSubmit)="onLogin(formLogin.value)">
+          <p>
+            <mat-form-field>
+              <input type="text" matInput placeholder="Correo" formControlName="correo" required>
+              <mat-error *ngIf="correo.invalid 
+                                    && 
+                                    (correo.dirty || correo.touched)">
+                <div *ngIf="correo.errors.required">
+                  El correo es requerido!
+                </div>
+                <div *ngIf="correo.errors.email">
+                  El correo es inválido!
+                </div>
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Contraseña</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" type="password" matInput formControlName="contrasena"
+                required>
+              <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="contrasena.invalid 
+                                    && 
+                                    (contrasena.dirty || contrasena.touched)">
+                <div *ngIf="contrasena.errors.required">
+                  La contraseña es requerida!
+                </div>
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <br>
+          <br>
+          <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+          <button type="submit" mat-raised-button color="primary" [disabled]="!formLogin.valid">Entrar</button>
+          <br>
+          <br>
+          <br>
+          <p align="center">
+            <a routerLink="/recuperar-contrasena">¿Has olvidado tu contraseña?</a>
+          </p>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,175 @@
+<h1 mat-dialog-title>
+  <mat-icon color="primary">edit_note</mat-icon>
+  Editar Asunto 
+</h1>
+<form [formGroup]="editarAsuntoFormGroup" (ngSubmit)="onSubmitForm(editarAsuntoFormGroup.value)">
+  <mat-dialog-content align="center">
+    <!-- expediente -->
+    <mat-form-field class="fullWidth" hintLabel="Mín 3 y Máx 50 caracteres" appearance="standard">
+      <mat-label>Expediente</mat-label>
+      <input matInput type="text" maxlength="50" formControlName="expediente" placeholder="Escribir aquí" required>
+      <mat-hint align="end">{{expediente.value?.length || 0}}/50</mat-hint>
+      <mat-error *ngIf="expediente.invalid 
+                            && 
+                            (expediente.dirty || expediente.touched)">
+        <div *ngIf="expediente.errors.required">
+          El expediente del asunto es requerido!
+        </div>
+        <div *ngIf="expediente.errors.minlength">
+          El expediente del asunto debe tener mínimo 3 caracteres!
+        </div>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <!-- organo -->
+    <mat-form-field class="fullWidth" hintLabel="Mín 3 y Máx 50 caracteres" appearance="standard">
+      <mat-label>Jusgado y/o Tribunal</mat-label>
+      <input matInput type="text" maxlength="50" formControlName="organo" placeholder="Escribir aquí" required>
+      <mat-hint align="end">{{organo.value?.length || 0}}/50</mat-hint>
+      <mat-error *ngIf="organo.invalid 
+                            && 
+                            (organo.dirty || organo.touched)">
+        <div *ngIf="organo.errors.required">
+          El organo del asunto es requerido!
+        </div>
+        <div *ngIf="organo.errors.minlength">
+          El organo del asunto debe tener mínimo 3 caracteres!
+        </div>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <!-- tipo_asunto -->
+    <mat-form-field appearance="standard">
+      <mat-label>Tipo de Asunto</mat-label>
+      <mat-select formControlName="tipo_asunto" required>
+        <mat-option value="Amparo">Amparo</mat-option>
+        <mat-option value="Corporativo">Corporativo</mat-option>
+        <mat-option value="Penal">Penal</mat-option>
+        <mat-option value="Mercantil">Mercantil</mat-option>
+        <mat-option value="Civil">Civil</mat-option>
+        <mat-option value="Administrativo">Administrativo</mat-option>
+        <mat-option value="Fiscal">Fiscal</mat-option>
+      </mat-select>
+      <mat-error *ngIf="tipo_asunto.invalid 
+                              && 
+                            (tipo_asunto.dirty || tipo_asunto.touched)">
+        <div *ngIf="tipo_asunto.errors.required">
+          El tipo de asunto es requerido!
+        </div>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <!-- tipo_servicio_asunto -->
+    <mat-form-field class="fullWidth" hintLabel="Mín 3 y Máx 50 caracteres" appearance="standard">
+      <mat-label>Tipo de Servicio y Asunto</mat-label>
+      <input matInput type="text" maxlength="50" formControlName="tipo_servicio_asunto" placeholder="Escribir aquí"
+        required>
+      <mat-hint align="end">{{tipo_servicio_asunto.value?.length || 0}}/50</mat-hint>
+      <mat-error *ngIf="tipo_servicio_asunto.invalid 
+                            && 
+                            (tipo_servicio_asunto.dirty || tipo_servicio_asunto.touched)">
+        <div *ngIf="tipo_servicio_asunto.errors.required">
+          El tipo de servicio y asunto es requerido!
+        </div>
+        <div *ngIf="tipo_servicio_asunto.errors.minlength">
+          El tipo de servicio y asunto debe tener mínimo 3 caracteres!
+        </div>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <!-- fecha_inicio -->
+    <mat-form-field appearance="standard">
+      <mat-label>Fecha de Inicio</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="fecha_inicio" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="fecha_inicio.invalid 
+                          && 
+                        (fecha_inicio.dirty || fecha_inicio.touched)">
+        <div *ngIf="fecha_inicio.errors.required">
+          La fecha de nacimiento es requerida!
+        </div>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <!-- estado_procesal -->
+    <mat-form-field class="fullWidth" hintLabel="Mín 3 y Máx 50 caracteres" appearance="standard">
+      <mat-label>Estado Procesal</mat-label>
+      <input matInput type="text" maxlength="50" formControlName="estado_procesal" placeholder="Escribir aquí" required>
+      <mat-hint align="end">{{estado_procesal.value?.length || 0}}/50</mat-hint>
+      <mat-error *ngIf="estado_procesal.invalid 
+                            && 
+                            (estado_procesal.dirty || estado_procesal.touched)">
+        <div *ngIf="estado_procesal.errors.required">
+          El estado procesal es requerido!
+        </div>
+        <div *ngIf="estado_procesal.errors.minlength">
+          El estado procesal debe tener mínimo 3 caracteres!
+        </div>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <!-- tramite_siguiente -->
+    <mat-form-field class="fullWidth" hintLabel="Mín 3 y Máx 50 caracteres" appearance="standard">
+      <mat-label>Trámite Siguiente</mat-label>
+      <input matInput type="text" maxlength="50" formControlName="tramite_siguiente" placeholder="Escribir aquí"
+        required>
+      <mat-hint align="end">{{tramite_siguiente.value?.length || 0}}/50</mat-hint>
+      <mat-error *ngIf="tramite_siguiente.invalid 
+                            && 
+                            (tramite_siguiente.dirty || tramite_siguiente.touched)">
+        <div *ngIf="tramite_siguiente.errors.required">
+          El trámite siguiente es requerido!
+        </div>
+        <div *ngIf="tramite_siguiente.errors.minlength">
+          El trámite siguiente debe tener mínimo 3 caracteres!
+        </div>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <!-- observaciones -->
+    <mat-form-field class="fullWidth" hintLabel="Mín 3 y Máx 50 caracteres" appearance="standard">
+      <mat-label>Observaciones</mat-label>
+      <textarea matInput type="text" maxlength="50" formControlName="observaciones" placeholder="Escribir aquí"
+        required></textarea>
+      <mat-hint align="end">{{observaciones.value?.length || 0}}/50</mat-hint>
+      <mat-error *ngIf="observaciones.invalid 
+                            && 
+                            (observaciones.dirty || observaciones.touched)">
+        <div *ngIf="observaciones.errors.required">
+          El trámite siguiente es requerido!
+        </div>
+        <div *ngIf="observaciones.errors.minlength">
+          El trámite siguiente debe tener mínimo 3 caracteres!
+        </div>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <!-- cliente -->
+    <mat-form-field class="fullWidth" appearance="standard">
+      <mat-label>Seleccione un cliente</mat-label>
+      <mat-select formControlName="cliente" required>
+        <mat-option *ngFor="let c of clientes" [value]="c._id">
+          {{ c.nombre }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="cliente.invalid 
+                        && 
+                      (cliente.dirty || cliente.touched)">
+        <div *ngIf="cliente.errors.required">
+          Asociar un cliente al asunto es requerido!
+        </div>
+      </mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center">
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+    <br>
+    <button type="button" mat-raised-button color="warn" (click)="onClickCancelar()">Cancelar</button>
+    &nbsp; &nbsp;
+    <button type="submit" mat-raised-button [disabled]="!this.editarAsuntoFormGroup.valid || isLoading" color="primary">
+      Guardar
+      <mat-icon>save</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</form>

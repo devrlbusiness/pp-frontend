@@ -1,0 +1,10 @@
+:host{
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  /* margin-top: 15%; */
+  height: 100%;
+  width: 100%;
+}
